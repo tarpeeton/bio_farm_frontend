@@ -1,3 +1,10 @@
+
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("./assets/Gilroy-ExtraBold.otf");
+}
 * {
   box-sizing: border-box;
+  font-family: "Gilroy"
 }
