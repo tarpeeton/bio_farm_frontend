@@ -7,7 +7,7 @@
 }
 
 body {
-    background: linear-gradient(315deg, rgb(241, 2, 225) 3%, rgba(60,132,206,1) 38%, rgb(6, 234, 63) 68%, rgba(255,25,25,1) 98%);
+    background: linear-gradient(315deg, rgb(241, 2, 225) 3%, rgba(60,132,206,1) 38%, rgb(6, 234, 63) 68%, rgb(205, 32, 32) 98%);
     animation: gradient 15s ease infinite;
     background-size: 400% 400%;
     background-attachment: fixed;
@@ -16,22 +16,74 @@ body {
 
 .Products {
     width: 100%;
-    margin: 20px 0 0 0 ;
+    margin: 50px 0 0 0 ;
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 .ProductItems {
-    width: 30%;
+    width: 25%;
+    padding: 10px;
+    position: relative;
     border: 1px solid rgb(2, 249, 39) ;
     border-radius: 25px;
     text-align: center;
+    text-decoration: none;
+    color: black;
+}
+.Discount {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://ucarecdn.com/47c8e6f5-f7e5-4be0-8b4c-c2823d3ac22a/-/preview/90x90/") ;
+    top: 10px;
+    z-index: 3000;
+    left: 10px;
+    p {
+        color: rgb(246, 243, 243);
+        margin: 0;
+        font-weight: 900;
+    }
+}
+.ProductImage {
+    width: 80%;
+    height: 150;
+    margin: 0 auto;
+
+}
+.Description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+}
+.ProductName {
+    h3 {
+        margin: 0;
+    }
 }
 
 
+.SoldOut {
+    color: green;
+}
+.SoldOutText {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 
+}
 
-
-
+.NavigateButton {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background-color: rgb(252, 6, 6);
+    color:rgb(239, 238, 238);
+}
 
 
 
