@@ -14,3 +14,7 @@ export const GetAllProduct = () => {
 export const getSingleProduct = (_id) => {
     return instance.get(`/product/${_id}`).then(response => response.data);
 };
+
+export const orderCreate = (_id , phone , username) => {
+    return instance.post(`/order/create/${_id}` , {phone , username})
+}
