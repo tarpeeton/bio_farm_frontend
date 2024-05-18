@@ -57,7 +57,7 @@ const Product = () => {
               <div className={style.ProductName}>
                 <h3>{pro.name}</h3>
               </div>
-              <div className="Description">
+              <div className={style.Description}>
                 <p>{pro.description}</p>
               </div>
               <div>
