@@ -54,7 +54,10 @@ const ProductItem = () => {
           <Carousel className={style.Carousel}>
             {data.product.image.map((imgSrc, index) => (
               <div key={index}>
-                <img src={`${BASE_URL}/${imgSrc}`} alt={`Product Image ${index + 1}`} />
+                <img
+                  src={`${BASE_URL}/${imgSrc}`}
+                  alt={`Product Image ${index + 1}`}
+                />
               </div>
             ))}
           </Carousel>
@@ -62,7 +65,10 @@ const ProductItem = () => {
         <div className={style.ProductInfo}>
           <div className={style.Order}>
             <form onSubmit={handleSubmit}>
-              <input onChange={(e) => setUser(e.target.value)} placeholder="Ф.И.О" />
+              <input
+                onChange={(e) => setUser(e.target.value)}
+                placeholder="Ф.И.О"
+              />
               <input
                 placeholder="+998 (__) ___-__-__"
                 ref={inputRef}
@@ -74,7 +80,9 @@ const ProductItem = () => {
           </div>
           <div className={style.SoldOut}>
             <p>
-              Bugunning ozida <span style={{ color: "red" }}>{data.product.soldOut}</span> martda Xarid Qilishdi
+              Bugunning ozida{" "}
+              <span style={{ color: "red" }}>{data.product.soldOut}</span>{" "}
+              martda Xarid Qilishdi
             </p>
           </div>
         </div>

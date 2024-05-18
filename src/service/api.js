@@ -11,10 +11,12 @@ const instance = axios.create({
 export const GetAllProduct = () => {
     return instance.get(`/product/getAll`);
 };
+// GetSingleProduct
 export const getSingleProduct = (_id) => {
     return instance.get(`/product/${_id}`).then(response => response.data);
 };
 
+// Create Order
 export const orderCreate = (_id , phone , username) => {
     return instance.post(`/order/create/${_id}` , {phone , username})
 }
