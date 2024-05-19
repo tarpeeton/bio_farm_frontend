@@ -9,6 +9,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { BASE_URL } from "../service/url";
 import { useMask } from "@react-input/mask";
+import { InfoImage } from "./InfoImage";
 
 const ProductItem = () => {
   const location = useLocation();
@@ -43,51 +44,59 @@ const ProductItem = () => {
 
   if (isLoading) return <Loader />;
   if (error) return <div>Error: {error.message}</div>;
-
+  //
   return (
-    <div className={style.Container}>
-      <div className={style.ProductNameContent}>
-        <h2>{data.product.productname}</h2>
-      </div>
-      <div className={style.Product}>
-        <div className={style.ProductImage}>
-          <Carousel className={style.Carousel}>
-            {data.product.image.map((imgSrc, index) => (
-              <div key={index}>
-                <img
-                  src={`${BASE_URL}/${imgSrc}`}
-                  alt={`Product Image ${index + 1}`}
+    <>
+      <div className={style.Container}>
+        <div className={style.ProductNameContent}>
+          <h2>{data.product.productname}</h2>
+        </div>
+        <div className={style.Product}>
+          <div className={style.ProductImage}>
+            <Carousel className={style.Carousel}>
+              {data.product.image.map((imgSrc, index) => (
+                <div key={index}>
+                  <img
+                    src={`${BASE_URL}/${imgSrc}`}
+                    alt={`Product Image ${index + 1}`}
+                  />
+                </div>
+              ))}
+            </Carousel>
+          </div>
+          <div className={style.ProductInfo}>
+            <div className={style.Order}>
+              <form onSubmit={handleSubmit}>
+                <input
+                  onChange={(e) => setUser(e.target.value)}
+                  placeholder="Ф.И.О"
                 />
-              </div>
-            ))}
-          </Carousel>
-        </div>
-        <div className={style.ProductInfo}>
-          <div className={style.Order}>
-            <form onSubmit={handleSubmit}>
-              <input
-                onChange={(e) => setUser(e.target.value)}
-                placeholder="Ф.И.О"
-              />
-              <input
-                placeholder="+998 (__) ___-__-__"
-                ref={inputRef}
-                onChange={(e) => setPhone(e.target.value)}
-                required
-              />
-              <button type="submit">Chegirmani Qo'lga Kiritish</button>
-            </form>
-          </div>
-          <div className={style.SoldOut}>
-            <p>
-              Bugunning ozida{" "}
-              <span style={{ color: "red" }}>{data.product.soldOut}</span>{" "}
-              martda Xarid Qilishdi
-            </p>
+                <input
+                  placeholder="+998 (__) ___-__-__"
+                  ref={inputRef}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                />
+                <button type="submit">Chegirmani Qo`lga Kiritish</button>
+              </form>
+            </div>
+            <div className={style.SoldOut}>
+              <p>
+                Bugunning ozida{" "}
+                <span style={{ color: "red" }}>{data.product.soldOut}</span>{" "}
+                martda Xarid Qilishdi
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <InfoImage />
+      <div className={style.ProductInfoText}>
+        <div className={style.Text}>
+          <p>{data.product.description}</p>
+        </div>
+      </div>
+    </>
   );
 };
 
