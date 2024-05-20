@@ -18,3 +18,19 @@
       border-radius: 120px 8px;
     }
   }
+
+
+  @media only screen and (max-width: 750px) {
+    .ProductInfoImg {
+      width: 100%;
+      margin: 0 auto;
+      justify-content: center;
+      display: flex;
+      flex-direction:column;
+      gap: 15px;
+
+    }
+    .InfoImage {
+      width: 100%;
+    }
+  }

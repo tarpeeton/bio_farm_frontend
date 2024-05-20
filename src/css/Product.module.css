@@ -1,3 +1,4 @@
+
 .Container {
   width: 80%;
   margin: 0 auto;
@@ -19,11 +20,14 @@ body {
   background-attachment: fixed;
 }
 
+
 .Products {
   width: 100%;
   margin: 50px 0 0 0;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
   justify-content: space-evenly;
 }
 .ProductItems {
@@ -160,5 +164,19 @@ body {
   gap: 20px;
   h1 {
     color: green;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .Container {
+    width: 100%;
+  }
+  .Products {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+  }
+  .ProductItems {
+    width: 100%;
   }
 }

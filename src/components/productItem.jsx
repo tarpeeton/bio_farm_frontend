@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { getSingleProduct, orderCreate } from "../service/api";
-import "react-lazy-load-image-component/src/effects/blur.css";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import Loader from "../components/loader";
 import { useLocation } from "react-router-dom";
-import style from "../css/Item.module.css";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import { BASE_URL } from "../service/url";
 import { useMask } from "@react-input/mask";
-import { InfoImage } from "./InfoImage";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import Loader from "../components/loader";
+import InfoImage from "./InfoImage"; // Ensure InfoImage is the default export if using default export
+import style from "../css/Item.module.css";
+import { BASE_URL } from "../service/url";
+import SuccessMessage from "./SuccessMessage"
 const ProductItem = () => {
   const location = useLocation();
   const productId = location.pathname.split("/").pop();
@@ -30,7 +31,7 @@ const ProductItem = () => {
   const mutation = useMutation({
     mutationFn: () => orderCreate(productId, phone, username),
     onSuccess: (data) => {
-      console.log(data);
+      <SuccessMessage data={data} />
     },
     onError: (error) => {
       console.error("Order creation failed: ", error);
@@ -39,12 +40,12 @@ const ProductItem = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutation.mutate(productId, phone, username);
+    mutation.mutate({ productId, phone, username });
   };
 
   if (isLoading) return <Loader />;
   if (error) return <div>Error: {error.message}</div>;
-  //
+
   return (
     <>
       <div className={style.Container}>
@@ -53,10 +54,17 @@ const ProductItem = () => {
         </div>
         <div className={style.Product}>
           <div className={style.ProductImage}>
-            <Carousel className={style.Carousel}>
+            <Carousel
+              className={style.Carousel}
+              interval={3500}
+              showThumbs={false}
+              infiniteLoop={true}
+              autoPlay={true}
+              emulateTouch={true}
+            >
               {data.product.image.map((imgSrc, index) => (
                 <div key={index}>
-                  <img
+                  <LazyLoadImage
                     src={`${BASE_URL}/${imgSrc}`}
                     alt={`Product Image ${index + 1}`}
                   />
@@ -68,10 +76,15 @@ const ProductItem = () => {
             <div className={style.Order}>
               <form onSubmit={handleSubmit}>
                 <input
+                  id="username"
+                  name="username"
                   onChange={(e) => setUser(e.target.value)}
                   placeholder="Ф.И.О"
+                  required
                 />
                 <input
+                  id="phone"
+                  name="phone"
                   placeholder="+998 (__) ___-__-__"
                   ref={inputRef}
                   onChange={(e) => setPhone(e.target.value)}
@@ -90,7 +103,7 @@ const ProductItem = () => {
           </div>
         </div>
       </div>
-      <InfoImage />
+      <InfoImage url={data.product.image} />
       <div className={style.ProductInfoText}>
         <div className={style.Text}>
           <p>{data.product.description}</p>
@@ -100,4 +113,4 @@ const ProductItem = () => {
   );
 };
 
-export { ProductItem };
+export default ProductItem;

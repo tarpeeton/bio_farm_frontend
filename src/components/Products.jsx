@@ -1,28 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import style from "../css/Product.module.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { NavLink } from "react-router-dom";
 import { GetAllProduct } from "../service/api";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../service/url";
 import Loader from "../components/loader";
-const Product = () => {
-  const queryClient = useQueryClient();
 
+const Products = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["products"],
     queryFn: GetAllProduct,
+  
   });
-
-  useEffect(() => {
-    // Invalidate the 'products' query to refetch data on mount/refresh
-    queryClient.invalidateQueries("products");
-  }, [queryClient]);
 
   if (isLoading) return <Loader />;
   if (error) return <div>Error: {error.message}</div>;
-  console.log(data.data.products);
 
   return (
     <>
@@ -77,7 +71,6 @@ const Product = () => {
         </div>
       </div>
 
-      {/* Animation */}
       <div>
         <div className={style.wave}></div>
         <div className={style.wave}></div>
@@ -87,4 +80,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default Products;
