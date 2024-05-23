@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://localhost:9090/image';
+export const BASE_URL = 'https://bioserver.onrender.com/image';
