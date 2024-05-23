@@ -2,7 +2,7 @@ import axios from "axios";
 
 // =============== (AXIOS) SETTINGS =============
 const instance = axios.create({
-    baseURL: "https://bio-server-i29o.onrender.com",
+    baseURL: "http://localhost:9090",
 });
 
 

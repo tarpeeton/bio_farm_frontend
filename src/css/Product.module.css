@@ -41,22 +41,29 @@ body {
   color: black;
 }
 .Discount {
-  width: 90px;
-  height: 90px;
+  width: 110px;
+  height: 110px;
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("https://ucarecdn.com/47c8e6f5-f7e5-4be0-8b4c-c2823d3ac22a/-/preview/90x90/");
+  background-image: url("https://ucarecdn.com/47c8e6f5-f7e5-4be0-8b4c-c2823d3ac22a/-/preview/110x110/");
   top: 10px;
   z-index: 3000;
   left: 10px;
-  p {
-    color: rgb(246, 243, 243);
-    margin: 0;
-    font-weight: 900;
-  }
+ p {
+  margin: 0;
+ }
+}
+.oldPrice  {
+  color: rgb(249, 251, 250);
+  margin: 0;
+  text-decoration-line: line-through;
+}
+.newPrice {
+  margin:0;
+  color:rgb(5, 248, 98);
 }
 .ProductImage {
   width: 80%;

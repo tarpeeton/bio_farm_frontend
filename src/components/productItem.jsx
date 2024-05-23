@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { getSingleProduct, orderCreate } from "../service/api";
+import {useNavigate} from 'react-router-dom'
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
@@ -11,7 +12,7 @@ import Loader from "../components/loader";
 import InfoImage from "./InfoImage"; // Ensure InfoImage is the default export if using default export
 import style from "../css/Item.module.css";
 import { BASE_URL } from "../service/url";
-import SuccessMessage from "./SuccessMessage"
+import Message from "./Message"
 const ProductItem = () => {
   const location = useLocation();
   const productId = location.pathname.split("/").pop();
@@ -25,13 +26,14 @@ const ProductItem = () => {
     mask: "+998 (__) ___-__-__",
     replacement: { _: /\d/ },
   });
+  const navigate = useNavigate()
 
   const [phone, setPhone] = useState("");
   const [username, setUser] = useState("");
   const mutation = useMutation({
     mutationFn: () => orderCreate(productId, phone, username),
     onSuccess: (data) => {
-      <SuccessMessage data={data} />
+      const navigateSuccess = navigate("/success")
     },
     onError: (error) => {
       console.error("Order creation failed: ", error);
@@ -100,6 +102,10 @@ const ProductItem = () => {
                 martda Xarid Qilishdi
               </p>
             </div>
+            <div className={style.Discount}>
+                <p className={style.oldPrice}>{data.product.oldPrice} so'm ❌ </p>
+                <p className={style.newPrice}>{data.product.newPrice} so'm ✅</p>
+              </div>
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ const Products = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["products"],
     queryFn: GetAllProduct,
-  
+
   });
 
   if (isLoading) return <Loader />;
@@ -39,7 +39,8 @@ const Products = () => {
             >
               <div className={style.Discount}>
                 <p>Chegirma</p>
-                <p>- {pro.discount}%</p>
+                <p className={style.oldPrice}>{pro.oldPrice} so'm </p>
+                <p className={style.newPrice}>{pro.newPrice} so'm</p>
               </div>
               <div className={style.ProductImage}>
                 <LazyLoadImage
